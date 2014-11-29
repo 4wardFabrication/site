@@ -5,5 +5,5 @@ heroku apps | grep "^$HEROKU_APP\b" || heroku create --no-remote "$HEROKU_APP" -
 git init .
 git add --all
 MESSAGE="Site update at $(date '+%d/%m/%Y %H:%M:%S')"
-git commit -m $MESSAGE
+git commit -m "$MESSAGE"
 git push --force "git@heroku.com:$HEROKU_APP.git" 'master:master'
