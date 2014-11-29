@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ./_artifact
-HEROKU_APP='4wardfabrication-staging'
+HEROKU_APP='site-4wardfabrication-staging'
 heroku apps | grep "^$HEROKU_APP\b" || heroku create --no-remote "$HEROKU_APP" --stack 'cedar'
 git init .
 git add --all
