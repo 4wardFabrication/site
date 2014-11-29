@@ -11,4 +11,4 @@ twitter_username: 4wardfabrication
 
 # Build settings
 markdown: kramdown
-exclude: [config.ru, Gemfile, Gemfile.lock, Procfile, Rakefile, vendor]
+exclude: [config.ru, Gemfile, Gemfile.lock, Procfile, Rakefile, vendor, README.md]
