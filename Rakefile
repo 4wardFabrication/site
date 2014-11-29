@@ -16,3 +16,18 @@ namespace :site do
     HTML::Proofer.new('./_site').run
   end
 end
+
+namespace :artifact do
+  desc 'Generate the deployable artifact'
+  task :generate do
+    _artifact_dir = './_artifact'
+    rm_rf _artifact_dir if Dir.exist?(_artifact_dir)
+    mkdir _artifact_dir
+    [
+      '_site',
+      '_config.yml',
+      'Gemfile',
+      'Gemfile.lock'
+    ].each { |source| cp_r source,"#{_artifact_dir}/." }
+  end
+end
