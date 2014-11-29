@@ -9,4 +9,10 @@ namespace :site do
       })
     ).process
   end
+
+  desc 'Test site'
+  task :test do
+    require 'html/proofer'
+    HTML::Proofer.new('./_site').run
+  end
 end

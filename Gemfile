@@ -3,3 +3,7 @@ ruby '2.1.5'
 
 gem 'jekyll', '2.5.2'
 gem 'rack-jekyll', '0.3.5'
+
+group :development, :test do
+  gem 'html-proofer', '1.5.4'
+end
