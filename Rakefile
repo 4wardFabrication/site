@@ -26,6 +26,7 @@ namespace :artifact do
     [
       '_site',
       '_config.yml',
+      'config.ru',
       'Gemfile',
       'Gemfile.lock'
     ].each { |source| cp_r source,"#{_artifact_dir}/." }
