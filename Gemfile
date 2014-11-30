@@ -6,4 +6,5 @@ gem 'rack-jekyll', '0.3.5'
 
 group :development, :test do
   gem 'html-proofer', '1.5.4'
+  gem 'jekyll-haml', '0.1.1'
 end
