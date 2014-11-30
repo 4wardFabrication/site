@@ -1,0 +1,22 @@
+%section#navbar
+  %nav.navbar.navbar-default.navbar-fixed-top.webmuse-nav{role: "navigation"}
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle{"data-target" => "#webmuse-mobile-apps-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{href: "/"} Webmuse
+      #webmuse-mobile-apps-navbar-collapse.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              Mobile Apps
+              %span.caret
+            %ul.dropdown-menu{role: "menu"}
+              %li
+                %a{href: "/timelapse-photo-mailer"} Timelapse Photo Mailer
+          %li
+            %a{href: "#connect"}
+              Connect
