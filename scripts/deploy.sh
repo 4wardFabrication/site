@@ -1,7 +1,8 @@
 #!/bin/bash
 
 HEROKU_APP=$1
-cd ./_artifact
+ARTIFACT_DIR=$2
+cd ./$ARTIFACT_DIR
 heroku apps | grep "^$HEROKU_APP\b" || heroku create --no-remote "$HEROKU_APP" --stack 'cedar'
 git init .
 git add --all
