@@ -26,6 +26,7 @@ namespace :artifact do
     mkdir _artifact_dir
     [
       '_site',
+      '_config.yml',
       'config.ru',
       'Gemfile',
       'Gemfile.lock'
