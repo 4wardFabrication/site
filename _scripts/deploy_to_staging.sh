@@ -1,2 +1,2 @@
 #!/bin/bash
-./scripts/deploy.sh 'site-4wardfabrication-staging' '_staging_artifact'
+./_scripts/deploy.sh 'site-4wardfabrication-staging' '_staging_artifact'
