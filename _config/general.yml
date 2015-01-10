@@ -14,3 +14,4 @@ markdown: kramdown
 exclude: [config.ru, Gemfile, Gemfile.lock, Procfile, Rakefile, vendor, README.md]
 gems:
   - jekyll-haml
+  - jekyll-sass
