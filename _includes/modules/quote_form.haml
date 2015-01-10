@@ -1,10 +1,23 @@
 %section#quoteform
-  %form
-    %input{type: 'hidden', name: 'subject', value: 'quote'}
-    %input{type: 'email', name: 'from', placeholder: 'Your email'}
-    %textarea{name: 'body', placeholder: 'Your message...'}
-    %button{type: "button", onClick: "Mailer.send(this.parentNode);"}
-      Send
+  .container-fluid
+    %form
+      %input.form-control{type: 'hidden', name: 'subject', value: 'quote'}
+      .row
+        .col-sm-4
+        .col-sm-4
+          .form-group
+            %input.form-control{type: 'email', name: 'from', placeholder: 'Your email'}
+      .row
+        .col-sm-4
+        .col-sm-4
+          .form-group
+            %textarea.form-control{name: 'body', placeholder: 'Your message...'}
+      .row
+        .col-sm-4
+        .col-sm-4
+          .form-group
+            %button.btn.btn-block.btn-default.btn-lg{type: "button", onClick: "Mailer.send(this.parentNode);"}
+              Send
 
 :javascript
   var Mailer = {
