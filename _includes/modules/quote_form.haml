@@ -14,13 +14,15 @@
       var from = form.from.value;
       var body = form.body.value;
 
-      $.post(webmuse_api_url, {
-        subject: subject,
-        from: from,
-        body: body
-      })
-      .done(function() {
-        console.log('done');
+      $.ajax({
+        type: 'POST',
+        url: webmuse_api_url,
+        dataType: 'json',
+        data: JSON.stringify({
+          subject: subject,
+          from: from,
+          body: body
+        })
       });
     }
   };
