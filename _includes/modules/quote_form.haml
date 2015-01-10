@@ -1,7 +1,26 @@
 %section#quoteform
-  %form{action: "{{site.webmuse_api_url}}emailer/ffab_email", method: 'POST'}
+  %form
     %input{type: 'hidden', name: 'subject', value: 'quote'}
     %input{type: 'email', name: 'from', placeholder: 'Your email'}
     %textarea{name: 'body', placeholder: 'Your message...'}
-    %input{type: 'submit', name: 'Send'}
+    %button{type: "button", onClick: "Mailer.send(this.parentNode);"}
+      Send
 
+:javascript
+  var Mailer = {
+    send: function(form) {
+      var webmuse_api_url = "{{site.webmuse_api_url}}emailer/ffab_email";
+      var subject = form.subject.value;
+      var from = form.from.value;
+      var body = form.body.value;
+
+      $.post(webmuse_api_url, {
+        subject: subject,
+        from: from,
+        body: body
+      })
+      .done(function() {
+        console.log('done');
+      });
+    }
+  };
