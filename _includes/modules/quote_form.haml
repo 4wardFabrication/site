@@ -16,38 +16,50 @@
         .col-sm-4
         .col-sm-4
           .form-group
-            %button.btn.btn-block.btn-default.btn-lg{type: 'button', onClick: 'Mailer.send();'}
+            %button.btn.btn-block.btn-default.btn-lg{type: 'button', onClick: 'quoteForm.send();'}
               Send
   {% haml modules/alerts.haml %}
 
 :javascript
-  var Mailer = {
-    send: function() {
-      var webmuse_api_url = "{{site.webmuse_api_url}}emailer/ffab_email";
-      var $quote_form_section = $('#quoteform');
-      var $subject = $quote_form_section.find('#subject');
-      var $from = $quote_form_section.find('#from');
-      var $body = $quote_form_section.find('#body');
-      var $alert_success = $quote_form_section.find('.alert-success');
-      var $alert_danger = $quote_form_section.find('.alert-danger');
+  function QuoteForm() {
+    this.isValid = false;
+    this.apiUrl = "{{site.webmuse_api_url}}emailer/ffab_email";
+    this.element = $('#quoteform');
+    this.fields = {
+      subject: this.element.find('#subject'),
+      from: this.element.find('#from'),
+      body: this.element.find('#body')
+    };
+    this.alerts = {
+      success: this.element.find('.alert-success'),
+      danger: this.element.find('.alert-danger')
+    };
+  };
 
+  QuoteForm.prototype.send = function() {
+    if(this.isValid) {
       $.ajax({
         type: 'POST',
-        url: webmuse_api_url,
+        url: this.apiUrl,
         dataType: 'json',
         data: JSON.stringify({
-          subject: $subject.val(),
-          from: $from.val(),
-          body: $body.val()
+          subject: this.fields.subject.val(),
+          from: this.fields.from.val(),
+          body: this.fields.body.val()
         })
       })
       .done(function() {
-        $alert_success.css('display', 'block');
-        $alert_danger.css('display', 'none');
+        this.alerts.success.css('display', 'block');
+        this.alerts.danger.css('display', 'none');
       })
       .error(function() {
-        $alert_success.css('display', 'none');
-        $alert_danger.css('display', 'block');
+        this.alerts.success.css('display', 'none');
+        this.alerts.danger.css('display', 'block');
       });
+    } else {
+      this.alerts.success.css('display', 'none');
+      this.alerts.danger.css('display', 'block');
     }
   };
+
+  var quoteForm = new QuoteForm();
