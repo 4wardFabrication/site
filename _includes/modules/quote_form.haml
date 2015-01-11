@@ -1,41 +1,53 @@
 %section#quoteform
   .container-fluid
     %form
-      %input.form-control{type: 'hidden', name: 'subject', value: 'quote'}
+      %input#subject.form-control{type: 'hidden', name: 'subject', value: 'quote'}
       .row
         .col-sm-4
         .col-sm-4
           .form-group
-            %input.form-control{type: 'email', name: 'from', placeholder: 'Your email'}
+            %input#from.form-control{type: 'email', name: 'from', placeholder: 'Your email'}
       .row
         .col-sm-4
         .col-sm-4
           .form-group
-            %textarea.form-control{name: 'body', placeholder: 'Your message...'}
+            %textarea#body.form-control{name: 'body', placeholder: 'Your message...'}
       .row
         .col-sm-4
         .col-sm-4
           .form-group
-            %button.btn.btn-block.btn-default.btn-lg{type: "button", onClick: "Mailer.send(this.parentNode);"}
+            %button.btn.btn-block.btn-default.btn-lg{type: 'button', onClick: 'Mailer.send();'}
               Send
+  {% haml modules/alerts.haml %}
 
 :javascript
   var Mailer = {
-    send: function(form) {
+    send: function() {
       var webmuse_api_url = "{{site.webmuse_api_url}}emailer/ffab_email";
-      var subject = form.subject.value;
-      var from = form.from.value;
-      var body = form.body.value;
+      var $quote_form_section = $('#quoteform');
+      var $subject = $quote_form_section.find('#subject');
+      var $from = $quote_form_section.find('#from');
+      var $body = $quote_form_section.find('#body');
+      var $alert_success = $quote_form_section.find('.alert-success');
+      var $alert_danger = $quote_form_section.find('.alert-danger');
 
       $.ajax({
         type: 'POST',
         url: webmuse_api_url,
         dataType: 'json',
         data: JSON.stringify({
-          subject: subject,
-          from: from,
-          body: body
+          subject: $subject.val(),
+          from: $from.val(),
+          body: $body.val()
         })
+      })
+      .done(function() {
+        $alert_success.css('display', 'block');
+        $alert_danger.css('display', 'none');
+      })
+      .error(function() {
+        $alert_success.css('display', 'none');
+        $alert_danger.css('display', 'block');
       });
     }
   };

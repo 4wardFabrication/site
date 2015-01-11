@@ -1,0 +1,9 @@
+section {
+  #alerts {
+    .alert-success, .alert-danger {
+      display: none;
+    }
+
+    height: 72px;
+  }
+}
