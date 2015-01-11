@@ -21,45 +21,4 @@
   {% haml modules/alerts.haml %}
 
 :javascript
-  function QuoteForm() {
-    this.isValid = false;
-    this.apiUrl = "{{site.webmuse_api_url}}emailer/ffab_email";
-    this.element = $('#quoteform');
-    this.fields = {
-      subject: this.element.find('#subject'),
-      from: this.element.find('#from'),
-      body: this.element.find('#body')
-    };
-    this.alerts = {
-      success: this.element.find('.alert-success'),
-      danger: this.element.find('.alert-danger')
-    };
-  };
-
-  QuoteForm.prototype.send = function() {
-    if(this.isValid) {
-      $.ajax({
-        type: 'POST',
-        url: this.apiUrl,
-        dataType: 'json',
-        data: JSON.stringify({
-          subject: this.fields.subject.val(),
-          from: this.fields.from.val(),
-          body: this.fields.body.val()
-        })
-      })
-      .done(function() {
-        this.alerts.success.css('display', 'block');
-        this.alerts.danger.css('display', 'none');
-      })
-      .error(function() {
-        this.alerts.success.css('display', 'none');
-        this.alerts.danger.css('display', 'block');
-      });
-    } else {
-      this.alerts.success.css('display', 'none');
-      this.alerts.danger.css('display', 'block');
-    }
-  };
-
   var quoteForm = new QuoteForm();
