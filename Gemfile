@@ -8,4 +8,5 @@ group :development, :test do
   gem 'html-proofer', '1.5.4'
   gem 'jekyll-haml', '0.1.1'
   gem 'jekyll-sass', '1.2.2'
+  gem 'jasmine', '~> 2.1.0'
 end
