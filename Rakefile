@@ -33,3 +33,6 @@ namespace :artifact do
     ].each { |source| cp_r source,"#{_artifact_dir}/." }
   end
 end
+require 'jasmine'
+ENV['JASMINE_CONFIG_PATH'] = '_test/js/support/jasmine.yml'
+load 'jasmine/tasks/jasmine.rake'
