@@ -17,6 +17,10 @@ function QuoteForm() {
       send_error: 'There was an issue sending your request. We apologise for any inconvenience.'
     }
   };
+  self.validations = {
+    email: new RegExp('^[^@]+@[^@]+$'),
+    body: new RegExp('.{5}')
+  };
 };
 
 QuoteForm.prototype.send = function() {
@@ -58,10 +62,9 @@ QuoteForm.prototype.formatAsInvalid = function(field) {
   field.parent().addClass('has-error');
 };
 
-QuoteForm.prototype.emailIsValid = function() {
+QuoteForm.prototype.validateEmail = function() {
   var self = this;
-  var regex = new RegExp('^[^@]+@[^@]+$');
-  if(regex.exec(self.fields.from.val())) {
+  if(self.validations.email.exec(self.fields.from.val())) {
     self.formatAsValid(self.fields.from);
     return true;
   }
@@ -69,7 +72,17 @@ QuoteForm.prototype.emailIsValid = function() {
   return false;
 };
 
+QuoteForm.prototype.validateBody = function() {
+  var self = this;
+  if(self.validations.body.exec(self.fields.body.val())) {
+    self.formatAsValid(self.fields.body);
+    return true;
+  }
+  self.formatAsInvalid(self.fields.body);
+  return false;
+};
+
 QuoteForm.prototype.validate = function() {
   var self = this;
-  self.isValid = self.emailIsValid();
+  self.isValid = self.validateEmail() & self.validateBody();
 };
