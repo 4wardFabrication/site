@@ -37,7 +37,7 @@ QuoteForm.prototype.send = function() {
         body: self.fields.body.val()
       })
     })
-    .done(function() {
+    .success(function() {
       self.alerts.success.find('span').html(self.alerts.messages.send_success);
       self.alerts.success.css('display', 'block');
       self.alerts.danger.css('display', 'none');
