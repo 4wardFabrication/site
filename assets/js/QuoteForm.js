@@ -30,7 +30,6 @@ QuoteForm.prototype.send = function() {
     $.ajax({
       type: 'POST',
       url: self.apiUrl,
-      dataType: 'json',
       data: JSON.stringify({
         subject: self.fields.subject.val(),
         from: self.fields.from.val(),
