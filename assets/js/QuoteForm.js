@@ -1,7 +1,7 @@
-function QuoteForm() {
+function QuoteForm(url) {
   var self = this;
   self.isValid = false;
-  self.apiUrl = "{{site.webmuse_api_url}}emailer/ffab_email";
+  self.apiUrl = url;
   self.element = $('#quoteform');
   self.fields = {
     subject: self.element.find('#subject'),
