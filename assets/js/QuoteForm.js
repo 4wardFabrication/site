@@ -1,4 +1,4 @@
-function QuoteForm(url) {
+function QuoteForm(url, alerts) {
   var self = this;
   self.apiUrl = url;
   self.element = $('#quoteform');
@@ -7,14 +7,12 @@ function QuoteForm(url) {
     from: self.element.find('#from'),
     body: self.element.find('#body')
   };
-  self.alerts = {
-    success: self.element.find('.alert-success'),
-    danger: self.element.find('.alert-danger'),
-    messages: {
-      invalid_form: 'Please correctly add a valid email and some details about your request. Thank you!',
-      send_success: 'Your request was successfully sent. We will respond within 48 hours. Thank you!',
-      send_error: 'There was an issue sending your request. We apologise for any inconvenience.'
-    }
+  self.alerts = alerts;
+  self.messages = {
+    invalid_form: '<strong>Uh oh!</strong> Please enter an email and some details about your request.',
+    send_pending: '<strong>Hold up!</strong> We are attempting to send your request.',
+    send_success: '<strong>Got it!</strong> We will respond within 48 hours. Thank you!',
+    send_error: '<strong>Well this is embarrassing!</strong> There was an issue sending your request. We apologise for any inconvenience.'
   };
   self.validations = {
     email: new RegExp('^[^@]+@[^@]+$'),
@@ -25,6 +23,7 @@ function QuoteForm(url) {
 QuoteForm.prototype.send = function() {
   var self = this;
   if(self.validate()) {
+    self.alerts.showInfo(self.messages.send_pending);
     $.ajax({
       type: 'POST',
       url: self.apiUrl,
@@ -35,14 +34,10 @@ QuoteForm.prototype.send = function() {
       })
     })
     .success(function() {
-      self.alerts.success.find('span').html(self.alerts.messages.send_success);
-      self.alerts.success.css('display', 'block');
-      self.alerts.danger.css('display', 'none');
+      self.alerts.showSuccess(self.messages.send_success);
     })
     .error(function() {
-      self.alerts.danger.find('span').html(self.alerts.messages.send_error);
-      self.alerts.success.css('display', 'none');
-      self.alerts.danger.css('display', 'block');
+      self.alerts.showError(self.messages.send_error);
     });
   }
 };
@@ -79,12 +74,9 @@ QuoteForm.prototype.validate = function() {
   var self = this;
   var valid = self.validateEmail() & self.validateBody();
   if(valid) {
-    self.alerts.success.css('display', 'none');
-    self.alerts.danger.css('display', 'none');
+    self.alerts.hide();
   } else {
-    self.alerts.danger.find('span').html(self.alerts.messages.invalid_form);
-    self.alerts.success.css('display', 'none');
-    self.alerts.danger.css('display', 'block');
+    self.alerts.showError(self.messages.invalid_form);
   }
   return valid;
 };
