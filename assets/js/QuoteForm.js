@@ -1,6 +1,5 @@
 function QuoteForm(url) {
   var self = this;
-  self.isValid = false;
   self.apiUrl = url;
   self.element = $('#quoteform');
   self.fields = {
@@ -25,8 +24,7 @@ function QuoteForm(url) {
 
 QuoteForm.prototype.send = function() {
   var self = this;
-  self.validate();
-  if(self.isValid) {
+  if(self.validate()) {
     $.ajax({
       type: 'POST',
       url: self.apiUrl,
@@ -46,10 +44,6 @@ QuoteForm.prototype.send = function() {
       self.alerts.success.css('display', 'none');
       self.alerts.danger.css('display', 'block');
     });
-  } else {
-    self.alerts.danger.find('span').html(self.alerts.messages.invalid_form);
-    self.alerts.success.css('display', 'none');
-    self.alerts.danger.css('display', 'block');
   }
 };
 
@@ -83,5 +77,13 @@ QuoteForm.prototype.validateBody = function() {
 
 QuoteForm.prototype.validate = function() {
   var self = this;
-  self.isValid = self.validateEmail() & self.validateBody();
+  var valid = self.validateEmail() & self.validateBody();
+  if(valid) {
+    self.alerts.success.css('display', 'none');
+    self.alerts.danger.css('display', 'none');
+  } else {
+    self.alerts.danger.find('span').html(self.alerts.messages.invalid_form);
+    self.alerts.success.css('display', 'none');
+    self.alerts.danger.css('display', 'block');
+  }
 };

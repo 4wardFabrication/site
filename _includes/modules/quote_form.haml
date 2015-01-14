@@ -6,12 +6,12 @@
         .col-sm-4
         .col-sm-4
           .form-group
-            %input#from.form-control{type: 'email', name: 'from', placeholder: 'Your email'}
+            %input#from.form-control{type: 'email', name: 'from', placeholder: 'Your email', onchange: 'quoteForm.validateEmail();'}
       .row
         .col-sm-4
         .col-sm-4
           .form-group
-            %textarea#body.form-control{name: 'body', placeholder: 'Your message...'}
+            %textarea#body.form-control{name: 'body', placeholder: 'Your message...', onchange: 'quoteForm.validateBody();'}
       .row
         .col-sm-4
         .col-sm-4
