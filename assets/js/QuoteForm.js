@@ -86,4 +86,5 @@ QuoteForm.prototype.validate = function() {
     self.alerts.success.css('display', 'none');
     self.alerts.danger.css('display', 'block');
   }
+  return valid;
 };
