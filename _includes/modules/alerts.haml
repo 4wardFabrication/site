@@ -1,17 +1,13 @@
 %section#alerts
-  .container-fluid
-    .row
-      .col-sm-4
-      .col-sm-4
-        .alert.alert-success{role: 'alert'}
-          %i.fa.fa-check-square
-          %span
-        .alert.alert-info{role: 'alert'}
-          %i.fa.fa-refresh
-          %span
-        .alert.alert-danger{role: 'alert'}
-          %i.fa.fa-exclamation-triangle
-          %span
+  .alert.alert-success{role: 'alert'}
+    %i.fa.fa-check-square
+    %span
+  .alert.alert-info{role: 'alert'}
+    %i.fa.fa-refresh
+    %span
+  .alert.alert-danger{role: 'alert'}
+    %i.fa.fa-exclamation-triangle
+    %span
 
 :javascript
   var alerts = new Alerts($('section#alerts'));

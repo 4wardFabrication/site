@@ -1,24 +1,22 @@
-%section#quoteform.jumbotron
+%section#quoteform.jumbotron.light
   .container-fluid
     %form
       %input#subject.form-control{type: 'hidden', name: 'subject', value: 'quote'}
       .row
-        .col-sm-4
-        .col-sm-4
+        .col-md-4.col-md-offset-4
           .form-group
             %input#from.form-control{type: 'email', name: 'from', placeholder: 'Your email', onchange: 'quoteForm.validateFrom();'}
       .row
-        .col-sm-4
-        .col-sm-4
+        .col-md-4.col-md-offset-4
           .form-group
-            %textarea#body.form-control{name: 'body', placeholder: 'Your message...', onchange: 'quoteForm.validateBody();'}
+            %textarea#body.form-control{name: 'body', rows: '5', placeholder: 'Your message...', onchange: 'quoteForm.validateBody();'}
       .row
-        .col-sm-4
-        .col-sm-4
+        .col-md-4.col-md-offset-4
           .form-group
             %button.btn.btn-block.btn-default.btn-lg{type: 'button', onClick: 'quoteForm.send();'}
               Send
-  {% haml modules/alerts.haml %}
+        .col-md-4.col-md-offset-4
+          {% haml modules/alerts.haml %}
 
 :javascript
   var quoteForm = new QuoteForm("{{site.webmuse_api_url}}emailer/ffab_email", alerts);
