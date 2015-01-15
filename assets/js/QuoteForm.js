@@ -50,33 +50,29 @@ QuoteForm.prototype.formatAsInvalid = function(field) {
   field.parent().addClass('has-error');
 };
 
-QuoteForm.prototype.validateEmail = function() {
-  var self = this;
-  if(self.validations.email.exec(self.fields.from.val())) {
-    self.formatAsValid(self.fields.from);
-    return true;
-  }
-  self.formatAsInvalid(self.fields.from);
-  return false;
+QuoteForm.prototype.validateFrom = function() {
+  return this.validateField(this.validations.email, this.fields.from);
 };
 
 QuoteForm.prototype.validateBody = function() {
-  var self = this;
-  if(self.validations.body.exec(self.fields.body.val())) {
-    self.formatAsValid(self.fields.body);
+return this.validateField(this.validations.body, this.fields.body);
+};
+
+QuoteForm.prototype.validateField = function(regex, field) {
+  if(regex.exec(field.val())) {
+    this.formatAsValid(field);
     return true;
   }
-  self.formatAsInvalid(self.fields.body);
+  this.formatAsInvalid(field);
   return false;
 };
 
 QuoteForm.prototype.validate = function() {
-  var self = this;
-  var valid = self.validateEmail() & self.validateBody();
+  var valid = this.validateFrom() & this.validateBody();
   if(valid) {
-    self.alerts.hide();
+    this.alerts.hide();
   } else {
-    self.alerts.showError(self.messages.invalid_form);
+    this.alerts.showError(this.messages.invalid_form);
   }
   return valid;
 };
