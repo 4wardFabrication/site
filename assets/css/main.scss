@@ -27,10 +27,14 @@ body {
   }
 }
 
+.spacer {
+  height: 50px;
+}
+
 section.jumbotron {
   margin: 0 auto;
   text-align: center;
-  padding: 150px 0 100px 0;
+  padding: 100px 0 100px 0;
 
   h1 {
     font-size: 3.2em;
