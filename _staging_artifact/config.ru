@@ -1,4 +1,0 @@
-require 'safe_yaml'
-require 'rack/jekyll'
-
-run Rack::Jekyll.new
