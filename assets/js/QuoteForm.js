@@ -1,23 +1,31 @@
 function QuoteForm(url, alerts) {
-  var self = this;
-  self.apiUrl = url;
-  self.element = $('#quoteform');
-  self.fields = {
-    subject: self.element.find('#subject'),
-    from: self.element.find('#from'),
-    body: self.element.find('#body')
+  this.apiUrl = url;
+  this.element = $('#quoteform');
+  this.fields = {
+    subject: this.element.find('#subject'),
+    from: this.element.find('#from'),
+    body: this.element.find('#body')
   };
-  self.alerts = alerts;
-  self.messages = {
+  this.alerts = alerts;
+  this.messages = {
     invalid_form: '<strong>Uh oh!</strong> Please enter an email and some details about your request.',
     send_pending: '<strong>Hold up!</strong> We are attempting to send your request.',
     send_success: '<strong>Got it!</strong> We will respond within 48 hours. Thank you!',
     send_error: '<strong>Well this is embarrassing!</strong> There was an issue sending your request. We apologise for any inconvenience.'
   };
-  self.validations = {
+  this.validations = {
     email: new RegExp('^[^@]+@[^@]+$'),
     body: new RegExp('.{5}')
   };
+
+  function divertKeyPress(self) {
+    self.element.find('form').submit(function() {
+      self.send();
+      return false;
+    });
+  };
+
+  divertKeyPress(this);
 };
 
 QuoteForm.prototype.send = function() {
