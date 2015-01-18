@@ -84,6 +84,10 @@ section#header {
 section#quoteform {
   background: $quoteform_bg;
 
+  form {
+    margin-top: 20px;
+  }
+
   button {
     display: inline-block;
     padding: 14px 36px;
