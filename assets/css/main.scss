@@ -1,12 +1,13 @@
 $header_bg: #777;
 $quoteform_bg: #e0e0e0;
+$connect_bg: rgb(95,178,106);
 $quote_form_field_border: #c7c7c7;
 $dark_jumbotron_header: #fff;
 $dark_jumbotron_text: rgba(255,255,255,.6);
 $light_jumbotron_header: #000;
 $light_jumbotron_text: rgb(102, 102, 102);
 $error: #a94442;
-$social_icons: #000;
+$social_icons: #fff;
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -137,6 +138,8 @@ section#alerts {
 }
 
 section#connect {
+  background: $connect_bg;
+
   .social-icons {
     margin-top: 20px;
   }
