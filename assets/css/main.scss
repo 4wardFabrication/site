@@ -1,10 +1,11 @@
 $header_bg: #777;
-$quoteform_bg: #777;
+$quoteform_bg: #e0e0e0;
+$quote_form_field_border: #c7c7c7;
 $dark_jumbotron_header: #fff;
 $dark_jumbotron_text: rgba(255,255,255,.6);
 $light_jumbotron_header: #000;
 $light_jumbotron_text: rgb(102, 102, 102);
-$yellow: #fdd761;
+$error: #a94442;
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -101,12 +102,18 @@ section#quoteform {
     color: #fff;
   }
 
+  .has-error {
+    & input, & textarea {
+      border-color: $error;
+    }
+  }
+
   input {
     height: 47px;
   }
 
   input, textarea {
-    border: none;
+    border: 1px solid $quote_form_field_border;
     border-radius: 2px;
     padding: 10px 15px;
     -webkit-appearance: none;
