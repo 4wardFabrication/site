@@ -1,22 +1,15 @@
-%section#connect
-  %h2
+%section#connect.jumbotron
+  %a{name: 'connect'}
+  %h1
     Connect
-  .container-fluid
-    .row
-      .col-sm-1
-      .col-sm-2
-        %a.hover-effect{:href => 'https://twitter.com/asceresini'}
-          .fa.fa-twitter
-      .col-sm-2
-        %a.hover-effect{:href => 'https://github.com/asceresini'}
-          .fa.fa-github
-      .col-sm-2
-        %a.hover-effect{:href => 'http://au.linkedin.com/in/asceresini/'}
-          .fa.fa-linkedin
-      .col-sm-2
-        %a.hover-effect{:href => 'https://www.facebook.com/ardelio'}
-          .fa.fa-facebook
-      .col-sm-2
-        %a.hover-effect{:href => 'https://plus.google.com/100891875226211546573/posts/p/pub?hl=en'}
-          .fa.fa-google-plus
-      .col-sm-1
+  %h2
+    Find out the latest news
+  .social-icons
+    .container-fluid
+      .row
+        .col-sm-2.col-sm-offset-4
+          %a.hover-effect{:href => 'https://twitter.com/asceresini'}
+            .fa.fa-twitter
+        .col-sm-2
+          %a.hover-effect{:href => 'https://www.facebook.com/ardelio'}
+            .fa.fa-facebook

@@ -6,6 +6,7 @@ $dark_jumbotron_text: rgba(255,255,255,.6);
 $light_jumbotron_header: #000;
 $light_jumbotron_text: rgb(102, 102, 102);
 $error: #a94442;
+$social_icons: #000;
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -135,3 +136,18 @@ section#alerts {
   }
 }
 
+section#connect {
+  .social-icons {
+    margin-top: 20px;
+  }
+
+  a {
+    display: inline-block;
+    font-size: 3em;
+    color: $social_icons;
+  }
+
+  ul {
+    list-style: none;
+  }
+}
